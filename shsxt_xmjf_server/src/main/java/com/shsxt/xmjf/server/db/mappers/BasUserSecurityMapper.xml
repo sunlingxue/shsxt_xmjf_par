@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shsxt.xmjf.server.db.dao.BasUserSecurityMapper">
+  <resultMap id="BaseResultMap" type="com.shsxt.xmjf.api.po.BasUserSecurity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="payment_password" jdbcType="VARCHAR" property="paymentPassword" />
+    <result column="pattern_lock" jdbcType="VARCHAR" property="patternLock" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="identify_card" jdbcType="VARCHAR" property="identifyCard" />
+    <result column="phone_status" jdbcType="INTEGER" property="phoneStatus" />
+    <result column="email_status" jdbcType="INTEGER" property="emailStatus" />
+    <result column="realname_status" jdbcType="INTEGER" property="realnameStatus" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="verify_time" jdbcType="TIMESTAMP" property="verifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, payment_password, pattern_lock, realname, identify_card, phone_status, 
+    email_status, realname_status, email, verify_time
+  </sql>
+  <select id="queryById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bas_user_security
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from bas_user_security
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="save" parameterType="com.shsxt.xmjf.api.po.BasUserSecurity">
+    insert into bas_user_security
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="paymentPassword != null">
+        payment_password,
+      </if>
+      <if test="patternLock != null">
+        pattern_lock,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="identifyCard != null">
+        identify_card,
+      </if>
+      <if test="phoneStatus != null">
+        phone_status,
+      </if>
+      <if test="emailStatus != null">
+        email_status,
+      </if>
+      <if test="realnameStatus != null">
+        realname_status,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="verifyTime != null">
+        verify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="paymentPassword != null">
+        #{paymentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="patternLock != null">
+        #{patternLock,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="identifyCard != null">
+        #{identifyCard,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStatus != null">
+        #{phoneStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emailStatus != null">
+        #{emailStatus,jdbcType=INTEGER},
+      </if>
+      <if test="realnameStatus != null">
+        #{realnameStatus,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null">
+        #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.shsxt.xmjf.api.po.BasUserSecurity">
+    update bas_user_security
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="paymentPassword != null">
+        payment_password = #{paymentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="patternLock != null">
+        pattern_lock = #{patternLock,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="identifyCard != null">
+        identify_card = #{identifyCard,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStatus != null">
+        phone_status = #{phoneStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emailStatus != null">
+        email_status = #{emailStatus,jdbcType=INTEGER},
+      </if>
+      <if test="realnameStatus != null">
+        realname_status = #{realnameStatus,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null">
+        verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="quertyBasUserSecurityByUserId" parameterType="int" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bas_user_security
+    where user_id=#{userId}
+  </select>
+</mapper>
